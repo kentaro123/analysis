@@ -2,6 +2,7 @@
 from flask import Flask
 import flask
 from flask import request
+from module.method import *
 
 app = Flask(__name__)
 
@@ -12,7 +13,8 @@ def index():
 @app.route('/result',methods=["POST","GET"])
 def look_up():
     client_params = request.form
-    return flask.render_template("result.html",cont=client_params['entry1'])
+    a = search(client_params['entry1'])
+    return flask.render_template("result.html",cont=a)
 
 if __name__ == '__main__':
     app.run()
