@@ -1,27 +1,30 @@
 
 
 def search(a):
-    typ, syu, man = readfi()
+    total = readfi()
     memo = []
     me = []
-    for i in range(len(man)):
-        if a in man[i]:
+    ser = a['entry1']
+    for i in range(len(total)):
+        if ser in total[i][int(a['ent'])]:
             memo.append(i)
     if len(memo)==0:
         return ['ヒットなし']
     for i in range(len(memo)):
-        me.append(typ[memo[i]]+"系"+syu[memo[i]]+"： "+man[memo[i]])
+        me.append(total[memo[i]][0]+"系"+total[memo[i]][1]+"： "+total[memo[i]][2])
     return me
-
 
 def readfi():
     path = 'data/dataset.txt'
     typ = []
     syu = []
     man = []
+    total = []
     with open(path) as f:
         for s_line in f:
-            typ.append(s_line.split()[0])
-            syu.append(s_line.split()[1])
-            man.append(s_line.split()[2])
-    return typ,syu,man
+            me = []
+            me.append(s_line.split()[0])
+            me.append(s_line.split()[1])
+            me.append(s_line.split()[2])
+            total.append(me)
+    return total
